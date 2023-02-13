@@ -73,6 +73,11 @@ function mirrorOnX() {
 function mirrorOnY() {
   mirrorY.value = !mirrorY.value;
 }
+function randomColor() {
+  pureColor.value = `rgb(${Math.floor(Math.random() * 256)},${Math.floor(
+    Math.random() * 256
+  )},${Math.floor(Math.random() * 256)})`;
+}
 </script>
 
 <template>
@@ -91,6 +96,7 @@ function mirrorOnY() {
       />
       <div class="checkbox-container">
         <color-picker v-model:pureColor="pureColor" />
+        <button @click="randomColor">Random color</button>
       </div>
     </div>
     <div class="checkbox-container">
