@@ -30,9 +30,21 @@ const iconList = reactive([
   { icon: "simple-icons:python" },
   { icon: "simple-icons:postgresql" },
   { icon: "simple-icons:mysql" },
+  { icon: "simple-icons:3m" },
+  { icon: "simple-icons:dragonframe" },
+  { icon: "fa6-brands:bluetooth" },
+  { icon: "fa6-brands:bitcoin" },
+  { icon: "fa6-brands:xbox" },
+  { icon: "fa6-brands:black-tie" },
+  { icon: "nonicons:node-16" },
+  { icon: "nonicons:javascript-16" },
+  { icon: "nonicons:babel-16" },
+  { icon: "arcticons:airvisual" },
+  { icon: "arcticons:alarmclockxtreme" },
+  { icon: "file-icons:json5" },
 ]);
 const style = reactive({
-  fontSize: 40,
+  fontSize: 60,
   color: "white",
 });
 </script>
@@ -57,7 +69,11 @@ const style = reactive({
         v-bind="item"
         v-for="item in iconList"
         :key="item.index"
-        :style="{ color: pureColor, fontSize: style.fontSize + 'px' }"
+        :style="{
+          color: pureColor,
+          fontSize: style.fontSize + 'px',
+          margin: '10px',
+        }"
       />
     </div>
   </div>
