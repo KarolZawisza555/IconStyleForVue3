@@ -1,16 +1,6 @@
 <script setup>
 import { reactive, ref, watch } from "vue";
 
-const pureColor = ref("rgb(255,254,255)");
-const rotation = ref(0);
-
-const options = ref([
-  { text: "Orginal", value: 0 },
-  { text: "90 deg", value: 1 },
-  { text: "180 deg", value: 2 },
-  { text: "270 deg", value: 3 },
-]);
-
 const iconList = reactive([
   { icon: "bxl:amazon" },
   { icon: "bxl:apple" },
@@ -52,11 +42,13 @@ const iconList = reactive([
   { icon: "arcticons:alarmclockxtreme" },
   { icon: "file-icons:json5" },
 ]);
+// COVERT COLOR TO HEX SECTION SECTION
 const style = reactive({
   fontSize: 60,
   color: "rgb(0,0,0)",
   colorHex: "",
 });
+const pureColor = ref("rgb(255,254,255)");
 watch([pureColor], () => {
   const arrayRGBColor = pureColor.value.match(/\d+/g);
   const convertNumberHex = arrayRGBColor.map((x) => parseInt(x).toString(16));
@@ -64,12 +56,19 @@ watch([pureColor], () => {
   style.colorHex = colorHex;
 });
 
+// ROTATION SECTION
+const rotation = ref(0);
+const options = ref([
+  { text: "Orginal", value: 0 },
+  { text: "90 deg", value: 1 },
+  { text: "180 deg", value: 2 },
+  { text: "270 deg", value: 3 },
+]);
 // MIRROR SECTION
 const mirrorX = ref(false);
 const mirrorY = ref(false);
 function mirrorOnX() {
   mirrorX.value = !mirrorX.value;
-  console.log(mirrorX.value);
 }
 function mirrorOnY() {
   mirrorY.value = !mirrorY.value;
