@@ -81,7 +81,7 @@ const iconList = reactive([
 const style = reactive({
   fontSize: 60,
   color: "rgb(0,0,0)",
-  colorHex: "",
+  colorHex: "#ffffff",
 });
 const pureColor = ref("rgb(255,254,255)");
 watch([pureColor], () => {
