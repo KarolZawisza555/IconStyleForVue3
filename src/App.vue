@@ -96,7 +96,9 @@ function randomColor() {
       />
       <div class="checkbox-container">
         <color-picker v-model:pureColor="pureColor" />
-        <button @click="randomColor">Random color</button>
+        <button :style="`color:${pureColor}`" class="btn" @click="randomColor">
+          Random color
+        </button>
       </div>
     </div>
     <div class="checkbox-container">
