@@ -1,7 +1,16 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, watch } from "vue";
 
-const pureColor = ref("white");
+const pureColor = ref("rgb(255,254,255)");
+const rotation = ref(0);
+
+const options = ref([
+  { text: "Orginal", value: 0 },
+  { text: "90 deg", value: 1 },
+  { text: "180 deg", value: 2 },
+  { text: "270 deg", value: 3 },
+]);
+
 const iconList = reactive([
   { icon: "bxl:amazon" },
   { icon: "bxl:apple" },
@@ -45,17 +54,35 @@ const iconList = reactive([
 ]);
 const style = reactive({
   fontSize: 60,
-  color: "white",
+  color: "rgb(0,0,0)",
+  colorHex: "",
 });
+watch([pureColor], () => {
+  const arrayRGBColor = pureColor.value.match(/\d+/g);
+  const convertNumberHex = arrayRGBColor.map((x) => parseInt(x).toString(16));
+  const colorHex = "#" + convertNumberHex.join("");
+  style.colorHex = colorHex;
+});
+
+// MIRROR SECTION
+const mirrorX = ref(false);
+const mirrorY = ref(false);
+function mirrorOnX() {
+  mirrorX.value = !mirrorX.value;
+  console.log(mirrorX.value);
+}
+function mirrorOnY() {
+  mirrorY.value = !mirrorY.value;
+}
 </script>
 
 <template>
   <div>
     <div>
       <h1 :style="`color:${pureColor}`">
-        Change color {{ pureColor }} and size {{ style.fontSize }}
+        Change color {{ pureColor }} {{ style.colorHex }}
       </h1>
-      <color-picker v-model:pureColor="pureColor" />
+      <h1 :style="`color:${pureColor}`">size: {{ style.fontSize }}</h1>
       <input
         type="range"
         v-model="style.fontSize"
@@ -63,12 +90,40 @@ const style = reactive({
         max="240"
         style="width: 100%"
       />
+      <div class="checkbox-container">
+        <color-picker v-model:pureColor="pureColor" />
+      </div>
     </div>
-    <div v-memo="[pureColor, style.fontSize]" class="icon-box">
+    <div class="checkbox-container">
+      <select v-model="rotation">
+        <option v-for="option in options" :value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+      Rotation value: {{ rotation }}
+    </div>
+    <div class="checkbox-container">
+      <label>
+        <input type="checkbox" :value="mirrorX" @change="mirrorOnX" />
+        <span class="switch" :class="{ 'is-active': mirrorX }"
+          >Mirror on x axis</span
+        >
+      </label>
+      <label>
+        <input type="checkbox" :value="mirrorY" @change="mirrorOnY" />
+        <span class="switch" :class="{ 'is-active': mirrorY }"
+          >Mirror on y axis</span
+        >
+      </label>
+    </div>
+    <div class="icon-box">
       <Icon
         v-bind="item"
         v-for="item in iconList"
         :key="item.index"
+        :rotate="rotation"
+        :horizontalFlip="mirrorX"
+        :verticalFlip="mirrorY"
         :style="{
           color: pureColor,
           fontSize: style.fontSize + 'px',
