@@ -49,7 +49,7 @@ const iconList = reactive([
   { icon: "material-symbols:cloudy-snowing" },
   { icon: "material-symbols:cardiology-rounded" },
   { icon: "material-symbols:distance" },
-  { icon: "material-symbols:distance" },
+  { icon: "mdi:high-definition" },
   { icon: "material-symbols:charging-station" },
   { icon: "grommet-icons:pin" },
   { icon: "grommet-icons:safari-option" },
