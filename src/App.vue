@@ -26,7 +26,9 @@ const style = reactive({
 <template>
   <div>
     <div>
-      <h1 :style="`color:${pureColor}`">Change color and size</h1>
+      <h1 :style="`color:${pureColor}`">
+        Change color {{ pureColor }} and size {{ style.fontSize }}
+      </h1>
       <color-picker v-model:pureColor="pureColor" />
       <input
         type="range"
