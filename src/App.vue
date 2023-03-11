@@ -147,13 +147,13 @@ function randomColor() {
       <label>
         <input type="checkbox" :value="mirrorX" @change="mirrorOnX" />
         <span class="switch" :class="{ 'is-active': mirrorX }"
-          >Mirror on x axis</span
+          >Mirror on x AXIS</span
         >
       </label>
       <label>
         <input type="checkbox" :value="mirrorY" @change="mirrorOnY" />
         <span class="switch" :class="{ 'is-active': mirrorY }"
-          >Mirror on y axis</span
+          >Mirror on y AXIS</span
         >
       </label>
     </div>
