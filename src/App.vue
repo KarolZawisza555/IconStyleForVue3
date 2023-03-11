@@ -120,7 +120,7 @@ function randomColor() {
     <div>
       <h1 :style="`color:${pureColor}`">Color RGB {{ pureColor }}</h1>
       <h2 :style="`color:${pureColor}`">Color HEX {{ style.colorHex }}</h1>
-      <h1 :style="`color:${pureColor}`">Size font: {{ style.fontSize }}</h1>
+      <h3 :style="`color:${pureColor}`">Size font: {{ style.fontSize }}</h1>
       <input
         type="range"
         v-model="style.fontSize"
